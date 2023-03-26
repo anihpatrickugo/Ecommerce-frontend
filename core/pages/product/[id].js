@@ -3,17 +3,45 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import MainLayout from "@/layouts/MainLayout";
+import { ACTIONS, useCart } from "@/contexts/CartContext";
+import { API_URL } from "@/config/urls";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const index = () => {
+export const getStaticPaths = async () => {
+  const res = await fetch(`http://127.0.0.1:8000/products/`);
+  const data = await res.json();
+
+  return {
+    paths: data.map((product) => ({ params: { id: product.id.toString() } })),
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps = async ({ params }) => {
+  const res = await fetch(`${API_URL}/products/${params.id}/`);
+  const data = await res.json();
+
+  return {
+    props: {
+      product: data,
+    },
+    revalidate: 5,
+  };
+};
+
+const index = ({ product }) => {
+  const { products, dispatch } = useCart();
+  const isInCart = products.find((item) => item.id == product.id);
+  // const item = products.filter((item) => (item.id = product.id), 0);
+
   return (
     <>
       <Head>
-        <title>Single Product</title>
-        <meta name="description" content="This is a single product." />
+        <title>{product.name}</title>
+        <meta name="description" content={product.description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/white-logo.svg" />
+        <link rel="icon" href={product.image} />
       </Head>
 
       <MainLayout>
@@ -27,7 +55,7 @@ const index = () => {
                     <main id="gallery">
                       <div class="main-img">
                         <Image
-                          src="/product-3.jpg"
+                          src={product.image}
                           id="current"
                           alt="#"
                           height={350}
@@ -39,90 +67,56 @@ const index = () => {
                 </div>
                 <div class="col-lg-6 col-md-12 col-12">
                   <div class="product-info">
-                    <h2 class="title">GoPro Karma Camera Drone</h2>
-                    <p class="category">
-                      <i class="lni lni-tag"></i> Drones:
-                      <a href="javascript:void(0)">Action cameras</a>
-                    </p>
+                    <h2 class="title">{product.name}</h2>
+                    {product.categories.map((category) => (
+                      <p class="category">
+                        <i class="lni lni-tag"></i>
+                        {category.name}
+                      </p>
+                    ))}
+
                     <h3 class="price">
-                      $850<span>$945</span>
+                      ₦{product.price}
+                      {product.discount && (
+                        <span>₦{product.initial_price}</span>
+                      )}
                     </h3>
-                    <div class="row">
-                      <div class="col-lg-4 col-md-4 col-12">
-                        <div class="form-group color-option">
-                          <label class="title-label" for="size">
-                            Choose color
-                          </label>
-                          <div class="single-checkbox checkbox-style-1">
-                            <input type="checkbox" id="checkbox-1" checked />
-                            <label for="checkbox-1">
-                              <span></span>
-                            </label>
-                          </div>
-                          <div class="single-checkbox checkbox-style-2">
-                            <input type="checkbox" id="checkbox-2" />
-                            <label for="checkbox-2">
-                              <span></span>
-                            </label>
-                          </div>
-                          <div class="single-checkbox checkbox-style-3">
-                            <input type="checkbox" id="checkbox-3" />
-                            <label for="checkbox-3">
-                              <span></span>
-                            </label>
-                          </div>
-                          <div class="single-checkbox checkbox-style-4">
-                            <input type="checkbox" id="checkbox-4" />
-                            <label for="checkbox-4">
-                              <span></span>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-12">
-                        <div class="form-group">
-                          <label for="color">Battery capacity</label>
-                          <select class="form-control" id="color">
-                            <option>5100 mAh</option>
-                            <option>6200 mAh</option>
-                            <option>8000 mAh</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-12">
-                        <div class="form-group quantity">
-                          <label for="color">Quantity</label>
-                          <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
+
                     <div class="bottom-content">
                       <div class="row align-items-end">
-                        <div class="col-lg-4 col-md-4 col-12">
-                          <div class="button cart-button">
-                            <button class="btn">Add to Cart</button>
+                        {isInCart ? (
+                          <div class="col-lg-8 col-md-8 col-12">
+                            <div class="button cart-button">
+                              <button
+                                class="btn"
+                                onClick={() =>
+                                  dispatch({
+                                    type: ACTIONS.REMOVE_FROM_CART,
+                                    payload: product,
+                                  })
+                                }
+                              >
+                                Remove From Cart
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-12">
-                          <div class="wish-button">
-                            <button class="btn">
-                              <i class="lni lni-reload"></i> Compare
-                            </button>
+                        ) : (
+                          <div class="col-lg-8 col-md-8 col-12">
+                            <div class="button cart-button">
+                              <button
+                                class="btn"
+                                onClick={() =>
+                                  dispatch({
+                                    type: ACTIONS.ADD_TO_CART,
+                                    payload: product,
+                                  })
+                                }
+                              >
+                                Add To Cart
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-12">
-                          <div class="wish-button">
-                            <button class="btn">
-                              <i class="lni lni-heart"></i> To Wishlist
-                            </button>
-                          </div>
-                        </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -134,16 +128,8 @@ const index = () => {
                 <div class="row">
                   <div class="col-lg-12 col-12">
                     <div class="info-body custom-responsive-margin">
-                      <h4>Details</h4>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat.
-                      </p>
+                      <h4>Description</h4>
+                      <p>{product.description}</p>
                     </div>
                   </div>
                 </div>

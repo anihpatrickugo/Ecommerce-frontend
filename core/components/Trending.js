@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "./Product";
 
-const Trending = () => {
+const Trending = ({ products }) => {
   return (
     <section class="trending-product section">
       <div className="container">
@@ -17,13 +17,9 @@ const Trending = () => {
           </div>
         </div>
         <div className="row">
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+          {products.map((product) => (
+            <Product key={product.id} product={product} />
+          ))}
         </div>
       </div>
     </section>
