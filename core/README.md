@@ -1,4 +1,17 @@
+# SHOPGRIDS FRONTEND WEBAPP
+
+Shopgrids is an ecommerce site for buying gadgets
+and electronics.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Installation
+
+clone the repository with the following command:
+
+```bash
+git clone https://github.com/anihpatrickugo/Ecommerce-frontend.git
+```
 
 ## Getting Started
 
@@ -36,3 +49,22 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Contributing
+
+'''
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+'''
+
+## Author
+
+[Anih-Patrick Ugochukwu](https://twitter.com/anihpatrickugo/)
+
+email: iampatrickugo@gmail.com
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

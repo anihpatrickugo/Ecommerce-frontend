@@ -66,7 +66,7 @@ const NavbarCartItems = () => {
             {products.length > 0 && (
               <div class="button">
                 <Link href="/checkout/" class="btn animate">
-                  Checkout
+                  Veiw Cart
                 </Link>
               </div>
             )}

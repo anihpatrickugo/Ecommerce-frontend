@@ -91,13 +91,6 @@ const ShippingAddress = ({ cart }) => {
     // console.log(rawData);
   };
 
-  //protecting route
-  useEffect(() => {
-    if (!cookie.get("authToken")) {
-      router.push("/login");
-    }
-  }, []);
-
   return (
     <div class="container py-5">
       {/* start preloader */}

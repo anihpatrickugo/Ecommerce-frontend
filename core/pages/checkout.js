@@ -9,7 +9,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { API_URL } from "@/config/urls";
 import cookie from "js-cookie";
 
-const checkout = () => {
+const Checkout = () => {
   const { loading, setLoading } = useAuth();
 
   const { products, dispatch } = useCart();
@@ -61,21 +61,15 @@ const checkout = () => {
     }
   };
 
-  useEffect(() => {
-    if (!cookie.get("authToken")) {
-      router.push("/login");
-    }
-  }, []);
-
   return (
     <>
       <Head>
-        <link
+        {/* <link
           href="https://cdn.lineicons.com/4.0/lineicons.css"
           rel="stylesheet"
-        />
+        /> */}
       </Head>
-      {/* start preloader */}
+
       {loading && (
         <div class="preloader">
           <div class="preloader-inner">
@@ -86,7 +80,7 @@ const checkout = () => {
           </div>
         </div>
       )}
-      {/* end preloader */}
+
       <section class="h-100" style={{ backgroundColor: "#eee" }}>
         <div class="container h-100 py-5">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -131,7 +125,7 @@ const checkout = () => {
                             })
                           }
                         >
-                          <i class="lni lni-minus"></i>
+                          <i class="lni lni-minus">-</i>
                         </button>
 
                         <input
@@ -159,7 +153,7 @@ const checkout = () => {
                             })
                           }
                         >
-                          <i class="lni lni-plus"></i>
+                          <i class="lni lni-plus">+</i>
                         </button>
                       </div>
                       <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
@@ -177,7 +171,7 @@ const checkout = () => {
                         }
                       >
                         <a href="#!" class="text-danger">
-                          <i class="lni lni-trash-can"></i>
+                          <i class="lni lni-trash-can">remove</i>
                         </a>
                       </div>
                     </div>
@@ -242,4 +236,4 @@ const checkout = () => {
   );
 };
 
-export default checkout;
+export default Checkout;

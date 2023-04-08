@@ -70,7 +70,13 @@ const Header = () => {
             <div class="col-lg-3 col-md-3 col-7">
               {/* Start Header Logo */}
               <Link class="navbar-brand" href="index.html">
-                <Image src="/logo.svg" alt="Logo" height={50} width={50} />
+                <Image
+                  src="/logo.svg"
+                  alt="Logo"
+                  height={50}
+                  width={50}
+                  style={{ width: "auto", height: "auto" }}
+                />
               </Link>
               {/* End Header Logo */}
             </div>
@@ -156,7 +162,7 @@ const Header = () => {
               <ul>
                 <li>
                   <a href="javascript:void(0)">
-                    <i class="lni lni-facebook-filled"></i>
+                    <i class="lni lni-facebook"></i>
                   </a>
                 </li>
                 <li>

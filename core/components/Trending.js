@@ -10,8 +10,8 @@ const Trending = ({ products }) => {
             <div className="section-title">
               <h2>Trending Product</h2>
               <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form.
+                Welcome to the no.1 store where you can shop for anykind of
+                accesories, gadgets or electronics.
               </p>
             </div>
           </div>

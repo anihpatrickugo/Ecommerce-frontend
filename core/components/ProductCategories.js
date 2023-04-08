@@ -28,7 +28,7 @@ const ProductCategories = () => {
           </a>
         </li>
         {allCategories.map((cat) => (
-          <li onClick={() => setCategory(cat.name)}>
+          <li key={cat.id} onClick={() => setCategory(cat.name)}>
             <a>
               {cat.name.toUpperCase()} <i class="lni lni-chevron-right"></i>
             </a>

@@ -2,18 +2,19 @@ import React, { useState, useLayoutEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import cookie from "js-cookie";
 import { useAuth } from "@/contexts/AuthContext";
 import { API_URL } from "@/config/urls";
 
-const login = () => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState(null);
 
   const router = useRouter();
-  const { token, setUserAuthInfo, loading, setLoading } = useAuth();
+  const callbackUrl = router.query?.callbackUrl ?? "/profile/";
+
+  const { setUserAuthInfo, loading, setLoading } = useAuth();
 
   const loginBtn = async (e) => {
     e.preventDefault();
@@ -29,29 +30,18 @@ const login = () => {
       },
     });
 
-    if (req.status === 200) {
-      const res = await req.json();
-      // cookie.set("authToken", res.access, { expires: 24 });
+    const res = await req.json();
+
+    if (req.ok) {
       setUserAuthInfo(res.access);
       setLoading(false);
       setError(null);
-
-      router.push("/profile");
-    }
-    if (req.status === 401) {
-      setLoading(false);
-      setError("Invalid credentials");
+      router.push(callbackUrl);
     } else {
       setLoading(false);
-      setError("Unable to submit credentials");
+      setError(res.error || res.message || res.errors || "Invalid credentials");
     }
   };
-
-  useLayoutEffect(() => {
-    if (cookie.get("authToken")) {
-      router.push("/profile");
-    }
-  }, []);
 
   return (
     <section class="vh-100" style={{ backgroundColor: "hsl(0, 0%, 96%)" }}>
@@ -117,7 +107,7 @@ const login = () => {
                   Login
                 </button>
                 <p class="small fw-bold mt-2 pt-1 mb-0">
-                  Don't have an account?{" "}
+                  Dont have an account ?
                   <Link href="/signup" class="link-success">
                     Sign Up
                   </Link>
@@ -148,4 +138,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

@@ -1,15 +1,12 @@
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "@next/font/google";
 import MainLayout from "@/layouts/MainLayout";
 import { ACTIONS, useCart } from "@/contexts/CartContext";
 import { API_URL } from "@/config/urls";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const getStaticPaths = async () => {
-  const res = await fetch(`http://127.0.0.1:8000/products/`);
+  const res = await fetch(`${API_URL}/products/`);
   const data = await res.json();
 
   return {
@@ -30,7 +27,7 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-const index = ({ product }) => {
+const Index = ({ product }) => {
   const { products, dispatch } = useCart();
   const isInCart = products.find((item) => item.id == product.id);
   // const item = products.filter((item) => (item.id = product.id), 0);
@@ -69,7 +66,7 @@ const index = ({ product }) => {
                   <div class="product-info">
                     <h2 class="title">{product.name}</h2>
                     {product.categories.map((category) => (
-                      <p class="category">
+                      <p key={category.id} class="category">
                         <i class="lni lni-tag"></i>
                         {category.name}
                       </p>
@@ -235,4 +232,4 @@ const index = ({ product }) => {
   );
 };
 
-export default index;
+export default Index;

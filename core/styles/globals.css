@@ -1695,7 +1695,7 @@ top: -1px;
   display: flex;
   -webkit-box-pack: end;
   -ms-flex-pack: end;
-  justify-content: end;
+  /* justify-content: end; */
 }
 
 .header .navbar-cart .wishlist {
@@ -1930,7 +1930,7 @@ top: -1px;
 }
 
 .header .navbar-cart .cart-items .shopping-item .shopping-list li .content h4 a:hover {
-  color: #0167F3;
+  color: #0192f3c0;
 }
 
 .header .navbar-cart .cart-items .shopping-item .shopping-list li .content .quantity {

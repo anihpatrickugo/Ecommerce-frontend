@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
+import "@/styles/profile.css";
 import "@/styles/globals.css";
 import CartContextProvider from "@/contexts/CartContext";
 import AuthContextProvider from "@/contexts/AuthContext";

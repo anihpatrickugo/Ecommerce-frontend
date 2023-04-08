@@ -6,7 +6,7 @@ import { API_URL } from "@/config/urls";
 import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/AuthContext";
 
-const signup = () => {
+const Signup = () => {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,12 +52,6 @@ const signup = () => {
       setError(res.username || res.email || res.message || res.errors);
     }
   };
-
-  useLayoutEffect(() => {
-    if (cookie.get("authToken")) {
-      router.push("/profile");
-    }
-  }, []);
 
   return (
     // <!-- Section: Design Block -->
@@ -218,4 +212,4 @@ const signup = () => {
   );
 };
 
-export default signup;
+export default Signup;

@@ -13,7 +13,14 @@ const Products = ({ product }) => {
       {/* start single product */}
       <div className="single-product">
         <div className="product-image">
-          <Image src={product.image} alt="#" width={150} height={200} />
+          <Image
+            src={product.image}
+            alt={product.name}
+            width={150}
+            height={200}
+            style={{ width: "auto", height: "auto" }}
+            priority={true}
+          />
           {product.discount && (
             <span class="sale-tag">-{product.discount}%</span>
           )}

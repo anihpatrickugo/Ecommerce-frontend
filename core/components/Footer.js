@@ -18,6 +18,7 @@ const Footer = () => {
                       alt="#"
                       height={100}
                       width={100}
+                      style={{ width: "auto", height: "auto" }}
                     />
                   </a>
                 </div>
@@ -154,11 +155,7 @@ const Footer = () => {
                 <div class="copyright">
                   <p>
                     Designed and Developed by
-                    <a
-                      href="https://github.com/anihpatrickugo/"
-                      rel="nofollow"
-                      target="_blank"
-                    >
+                    <a href="https://github.com/anihpatrickugo/">
                       Anih-Patrick Ugochukwu
                     </a>
                   </p>
