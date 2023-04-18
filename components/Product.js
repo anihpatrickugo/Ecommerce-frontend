@@ -64,6 +64,9 @@ const Products = ({ product }) => {
             <span>₦{product.price}</span>
           </div>
         </div>
+        <div className="">
+          <Link href={`product/${product.id}`}>View Details</Link>
+        </div>
       </div>
     </div>
   );
