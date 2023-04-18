@@ -13,14 +13,17 @@ const Products = ({ product }) => {
       {/* start single product */}
       <div className="single-product">
         <div className="product-image">
-          <Image
-            src={product.image}
+          {/* <Image
+            src={
+              "http://res.cloudinary.com/dmhxcjyna/image/upload/v1681772196/kpelsjsyhym87yejayoo.jpg"
+            }
             alt={product.name}
             width={150}
             height={200}
             style={{ width: "auto", height: "auto" }}
             priority={true}
-          />
+          /> */}
+          <img src={`http://res.cloudinary.com/dmhxcjyna/${product.image}`} />
           {product.discount && (
             <span class="sale-tag">-{product.discount}%</span>
           )}

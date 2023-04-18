@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -100,12 +100,15 @@ const Checkout = () => {
                   <div class="card-body p-4">
                     <div class="row d-flex justify-content-between align-items-center">
                       <div class="col-md-2 col-lg-2 col-xl-2">
-                        <Image
+                        {/* <Image
                           src={product.image}
                           class="img-fluid rounded-3"
                           alt={product.name}
                           height={80}
                           width={100}
+                        /> */}
+                        <img
+                          src={`http://res.cloudinary.com/dmhxcjyna/${product.image}`}
                         />
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-3">

@@ -5,10 +5,10 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "shopgrids.onrender.com",
+        protocol: "http",
+        hostname: "res.cloudinary.com",
         port: "",
-        pathname: "/media/products/**",
+        pathname: "/dmhxcjyna/image/upload/v1681772608/**",
       },
     ],
   },

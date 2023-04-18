@@ -49,7 +49,7 @@ const Orders = ({ orders }) => {
                           <td>{idx + 1}</td>
                           <td>{order.reference}</td>
                           <td>{order.products.length}</td>
-                          <td>${order.amount}</td>
+                          <td>₦{order.amount}</td>
                           <td>{Date(order.date)}</td>
                           {order.payment ? (
                             <td>

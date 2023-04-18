@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { ACTIONS, useCart } from "@/contexts/CartContext";
 
@@ -42,7 +42,10 @@ const NavbarCartItems = () => {
                 </a>
                 <div class="cart-img-head">
                   <a class="cart-img" href="product-details.html">
-                    <Image src={product.image} alt="#" height={80} width={50} />
+                    {/* <Image src={product.image} alt="#" height={80} width={50} /> */}
+                    <img
+                      src={`http://res.cloudinary.com/dmhxcjyna/${product.image}`}
+                    />
                   </a>
                 </div>
 
