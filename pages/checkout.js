@@ -109,6 +109,7 @@ const Checkout = () => {
                         /> */}
                         <img
                           src={`http://res.cloudinary.com/dmhxcjyna/${product.image}`}
+                          alt={product.image}
                         />
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-3">

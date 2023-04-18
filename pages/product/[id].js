@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
-import Image from "next/image";
+import { useRouter } from "next/router";
+// import Image from "next/image";
 import MainLayout from "@/layouts/MainLayout";
 import { ACTIONS, useCart } from "@/contexts/CartContext";
 import { API_URL } from "@/config/urls";
@@ -32,6 +33,8 @@ const Index = ({ product }) => {
   const isInCart = products.find((item) => item.id == product.id);
   // const item = products.filter((item) => (item.id = product.id), 0);
 
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -51,12 +54,16 @@ const Index = ({ product }) => {
                   <div class="product-images">
                     <main id="gallery">
                       <div class="main-img">
-                        <Image
+                        {/* <Image
                           src={product.image}
                           id="current"
                           alt="#"
                           height={350}
                           width={250}
+                        /> */}
+                        <img
+                          src={`http://res.cloudinary.com/dmhxcjyna/${product.image}`}
+                          alt={product.image}
                         />
                       </div>
                     </main>
@@ -114,6 +121,20 @@ const Index = ({ product }) => {
                             </div>
                           </div>
                         )}
+                      </div>
+                    </div>
+                    <div class="bottom-content">
+                      <div class="row align-items-end">
+                        <div class="col-lg-8 col-md-8 col-12">
+                          <div class="button cart-button">
+                            <button
+                              class="btn"
+                              onClick={() => router.push("/")}
+                            >
+                              Back to Shop
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

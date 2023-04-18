@@ -45,6 +45,7 @@ const NavbarCartItems = () => {
                     {/* <Image src={product.image} alt="#" height={80} width={50} /> */}
                     <img
                       src={`http://res.cloudinary.com/dmhxcjyna/${product.image}`}
+                      alt={product.image}
                     />
                   </a>
                 </div>

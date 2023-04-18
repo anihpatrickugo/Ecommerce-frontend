@@ -23,7 +23,10 @@ const Products = ({ product }) => {
             style={{ width: "auto", height: "auto" }}
             priority={true}
           /> */}
-          <img src={`http://res.cloudinary.com/dmhxcjyna/${product.image}`} />
+          <img
+            src={`http://res.cloudinary.com/dmhxcjyna/${product.image}`}
+            alt={product.image}
+          />
           {product.discount && (
             <span class="sale-tag">-{product.discount}%</span>
           )}
